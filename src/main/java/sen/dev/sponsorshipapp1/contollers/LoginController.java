@@ -23,7 +23,6 @@ public class LoginController {
         String login = loginTfd.getText();
         String password = passwordTfd.getText();
         if (login.trim().equals("") || password.trim().equals("")){
-            System.out.println("Tous les champs sont obligatoires ");
             Notification.NotifError("Erreur !", "Tous les champs sont obligatoires !");
         }else{
             Utilisateur user = userDao.seConnecter(login, password);

@@ -3,6 +3,7 @@ import javafx.beans.Observable;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -25,7 +26,8 @@ public class UserController  implements Initializable {
     private DBConnection db=new DBConnection();
     @FXML
     private TextField nomTfd;
-
+    @FXML
+    private TextField loginTfd;
     @FXML
     private TextField prenomTfd;
 
@@ -34,6 +36,9 @@ public class UserController  implements Initializable {
 
     @FXML
     private PasswordField passwordTfd;
+
+    @FXML
+    private TableColumn<Utilisateur, Integer> activedCol;
 
     @FXML
 
@@ -53,6 +58,8 @@ public class UserController  implements Initializable {
 
     @FXML
     private TableColumn<Utilisateur, String> profilCol;
+    @FXML
+    private TableColumn<Utilisateur, String> loginCol;
 
     @FXML
     private Button enregistrerBtn;
@@ -63,6 +70,31 @@ public class UserController  implements Initializable {
     @FXML
     private Button supprimerBtn;
 
+    @FXML
+    void save(ActionEvent event) {
+
+        String sql="INSERT INTO  user(id,nom,prenom,login,password,profil) VALUES(NULL,?,?,?,?,?)";
+        try{
+            db.initPrepar(sql);
+            db.getPstm().setString(1,nomTfd.getText());
+            db.getPstm().setString(2,prenomTfd.getText());
+            db.getPstm().setString(3,loginTfd.getText());
+            db.getPstm().setString(4,passwordTfd.getText());
+//            Role selectedRole=profilTfd.getValue();
+//            if(selectedRole!=null){
+//                db.getPstm().setInt(5,selectedRole.getId());
+//            }
+            String profil= profilTfd.getSelectionModel().getSelectedItem().toString();
+            db.getPstm().setInt(5,profil.equals("ROLE_CANDIDAT") ? 2:3);
+            db.executeMaj();
+            db.closeConnection();
+            loadTable();
+
+        }catch (SQLException e){
+            throw  new RuntimeException();
+        }
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         loadTable();
@@ -71,7 +103,7 @@ public class UserController  implements Initializable {
 
     public void setListeProfil(){
         List<String> profilList=new ArrayList<>();
-        String sql = "SELECT name FROM role";
+        String sql = "SELECT name FROM role WHERE id <> 1";
         try {
             db.initPrepar(sql);
             ResultSet rs = db.executeSelect();
@@ -95,11 +127,12 @@ public class UserController  implements Initializable {
                 user.setId(rs.getInt(1));
                 user.setNom(rs.getString(2));
                 user.setPrenom(rs.getString(3));
+                user.setLogin(rs.getString(4));
+                user.setActived(rs.getInt(6));
                 IRole iRole = new RoleImpl();
                 Role profil = iRole.getRoleById(rs.getInt(7));
                 user.setProfil(profil);
                 utilisateurs.add(user);
-
             }
             db.closeConnection();
         } catch (SQLException e) {
@@ -120,7 +153,8 @@ public class UserController  implements Initializable {
             String roleName=(role!=null) ? role.getName() : "";
             return new SimpleStringProperty(roleName);
         });
-
+        loginCol.setCellValueFactory(new PropertyValueFactory<Utilisateur,String>("login"));
+        activedCol.setCellValueFactory(new PropertyValueFactory<Utilisateur,Integer>("actived"));
     }
 }
 

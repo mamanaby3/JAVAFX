@@ -11,5 +11,6 @@ public class Utilisateur {
     private String nom,prenom,login,password;
     private int actived;
     private Role profil;
+    private String profilName;
 
 }

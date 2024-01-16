@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 public class App extends Application {
     @Override
     public void start(Stage stage) throws Exception {
-        Parent parent= FXMLLoader.load(getClass().getResource("/pages/admin.fxml"));
+        Parent parent= FXMLLoader.load(getClass().getResource("/pages/login.fxml"));
         Scene scene=new Scene(parent);
         stage.setTitle("Page de Connexion");
         stage.setScene(scene);
