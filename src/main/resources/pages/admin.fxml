@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sen.dev.sponsorshipapp1.contollers.UserController">
+   <children>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <BorderPane layoutX="137.0" layoutY="129.0" prefHeight="600.0" prefWidth="1100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <top>
+                  <AnchorPane prefHeight="70.0" prefWidth="1100.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <AnchorPane layoutX="-20.0" layoutY="-86.0" prefHeight="35.0" prefWidth="1100.0" style="-fx-background-color: black;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <Text fill="#f2eeee" layoutX="71.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Utilisateur">
+                                 <font>
+                                    <Font name="System Bold" size="20.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+               </top>
+               <left>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <AnchorPane layoutX="-14.0" layoutY="49.0" prefHeight="530.0" prefWidth="211.0" style="-fx-background-color: black; color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-11.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <Label layoutX="37.0" layoutY="97.0" prefHeight="26.0" prefWidth="126.0" text="Bienvenue" textFill="#fffafa">
+                                 <font>
+                                    <Font name="Tahoma Bold" size="21.0" />
+                                 </font>
+                              </Label>
+                              <Line endX="100.0" layoutX="106.0" layoutY="136.0" startX="-100.0" stroke="WHITE" />
+                              <Button layoutX="17.0" layoutY="159.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="180.0" text="Acceuil" />
+                              <Button layoutX="17.0" layoutY="210.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="180.0" text="Ajout Utilisateur" />
+                              <Button layoutX="15.0" layoutY="485.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="47.0" />
+                              <Label layoutX="75.0" layoutY="490.0" text="DÉCONNEXION" textFill="#f8f6f6" />
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+               </left>
+               <center>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <VBox layoutX="23.0" layoutY="20.0" prefHeight="320.0" prefWidth="314.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nom">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </VBox.margin>
+                              </Text>
+                              <TextField fx:id="nomTfd">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Prenom">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </VBox.margin>
+                              </Text>
+                              <TextField fx:id="prenomTfd">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Email">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </VBox.margin>
+                              </Text>
+                              <TextField fx:id="emailTfd">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </VBox.margin>
+                              </Text>
+                              <PasswordField fx:id="passwordTfd">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </VBox.margin>
+                              </PasswordField>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Profil">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </VBox.margin>
+                              </Text>
+                           </children>
+                        </VBox>
+                        <TableView fx:id="utilisateursTbl" layoutX="345.0" layoutY="25.0" prefHeight="447.0" prefWidth="554.0">
+                          <columns>
+                            <TableColumn fx:id="idCol" prefWidth="156.0" text="Id" />
+                            <TableColumn fx:id="nomCol" prefWidth="137.0" text="Nom" />
+                              <TableColumn fx:id="prenomCol" minWidth="4.0" prefWidth="149.0" text="Prenom" />
+                              <TableColumn fx:id="profilCol" prefWidth="110.0" text="Profil" />
+                          </columns>
+                        </TableView>
+                        <ButtonBar layoutX="385.0" layoutY="480.0" prefHeight="40.0" prefWidth="420.0">
+                          <buttons>
+                              <Button fx:id="enregistrerBtn" mnemonicParsing="false" prefHeight="31.0" prefWidth="120.0" text="Enregistrer" />
+                              <Button fx:id="modifierBtn" mnemonicParsing="false" text="Modifier" />
+                            <Button fx:id="supprimerBtn" mnemonicParsing="false" text="Supprimer" />
+                          </buttons>
+                        </ButtonBar>
+                        <ComboBox fx:id="profilTfd" layoutX="30.0" layoutY="426.0" prefHeight="31.0" prefWidth="295.0" />
+                     </children>
+                  </AnchorPane>
+               </center>
+            </BorderPane>
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>
