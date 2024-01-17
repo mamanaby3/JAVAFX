@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="672.0" prefWidth="1105.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="sen.dev.sponsorshipapp1.contollers.UserController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="672.0" prefWidth="1105.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sen.dev.sponsorshipapp1.contollers.UserController">
    <children>
       <AnchorPane prefHeight="200.0" prefWidth="200.0">
          <children>
@@ -75,7 +75,7 @@
                               </ComboBox>
                            </children>
                         </VBox>
-                        <TableView fx:id="utilisateursTbl" layoutX="345.0" layoutY="25.0" prefHeight="447.0" prefWidth="727.0">
+                        <TableView fx:id="utilisateursTbl" layoutX="345.0" layoutY="25.0" onMouseClicked="#getData" prefHeight="447.0" prefWidth="727.0">
                           <columns>
                             <TableColumn fx:id="idCol" prefWidth="105.0" text="Id" />
                             <TableColumn fx:id="nomCol" prefWidth="118.0" text="Nom" />
@@ -85,11 +85,11 @@
                               <TableColumn fx:id="activedCol" prefWidth="124.0" text="Actived" />
                           </columns>
                         </TableView>
-                        <ButtonBar layoutX="385.0" layoutY="480.0" prefHeight="40.0" prefWidth="420.0">
+                        <ButtonBar layoutX="385.0" layoutY="480.0" prefHeight="40.0" prefWidth="470.0">
                           <buttons>
                               <Button fx:id="enregistrerBtn" mnemonicParsing="false" onAction="#save" prefHeight="31.0" prefWidth="120.0" text="Enregistrer" />
-                              <Button fx:id="modifierBtn" mnemonicParsing="false" text="Modifier" />
-                            <Button fx:id="supprimerBtn" mnemonicParsing="false" text="Supprimer" />
+                              <Button fx:id="modifierBtn" mnemonicParsing="false" onAction="#update" text="Modifier" />
+                            <Button fx:id="supprimerBtn" mnemonicParsing="false" onAction="#delete" text="Supprimer" />
                           </buttons>
                         </ButtonBar>
                      </children>

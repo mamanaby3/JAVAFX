@@ -3,16 +3,20 @@ import javafx.beans.Observable;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+//import org.w3c.dom.events.MouseEvent;
 import sen.dev.sponsorshipapp1.DBConnection;
 import sen.dev.sponsorshipapp1.entities.Role;
 import sen.dev.sponsorshipapp1.entities.Utilisateur;
 import sen.dev.sponsorshipapp1.ripositories.role.IRole;
 import sen.dev.sponsorshipapp1.ripositories.role.RoleImpl;
+import sen.dev.sponsorshipapp1.tools.Notification;
 
 import java.net.URL;
 import java.sql.ResultSet;
@@ -24,6 +28,7 @@ import java.util.ResourceBundle;
 
 public class UserController  implements Initializable {
     private DBConnection db=new DBConnection();
+    private int id;
     @FXML
     private TextField nomTfd;
     @FXML
@@ -71,6 +76,41 @@ public class UserController  implements Initializable {
     private Button supprimerBtn;
 
     @FXML
+    void update(ActionEvent event) {
+        String sql = "UPDATE user SET nom = ?, prenom = ?, login = ?, profil = ? WHERE id = ?";
+        try {
+            db.initPrepar(sql);
+            db.getPstm().setString(1, nomTfd.getText());
+            db.getPstm().setString(2, prenomTfd.getText());
+            db.getPstm().setString(3, loginTfd.getText());
+            // db.getPstm().setString(4, passwordTfd.getText());
+            String profil = profilTfd.getSelectionModel().getSelectedItem().toString();
+            db.getPstm().setInt(4, profil.equals("ROLE_CANDIDAT") ? 2 : 3);
+            db.getPstm().setInt(5, id);
+            db.executeMaj();
+            db.closeConnection();
+            loadTable();
+            viderChamp();
+            Notification.NotifSuccess("Succes", "Modification Avec success!");
+            enregistrerBtn.setDisable(false);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @FXML
+    void getData(MouseEvent event) {
+        Utilisateur utilisateur=utilisateursTbl.getSelectionModel().getSelectedItem();
+        id=utilisateur.getId();
+        prenomTfd.setText(utilisateur.getPrenom());
+        nomTfd.setText(utilisateur.getNom());
+        loginTfd.setText(utilisateur.getLogin());
+        //passwordTfd.setText(utilisateur.getPassword());
+        profilTfd.getSelectionModel().select(utilisateur.getProfil().getName());
+        enregistrerBtn.setDisable(true);
+    }
+
+    @FXML
     void save(ActionEvent event) {
 
         String sql="INSERT INTO  user(id,nom,prenom,login,password,profil) VALUES(NULL,?,?,?,?,?)";
@@ -80,18 +120,32 @@ public class UserController  implements Initializable {
             db.getPstm().setString(2,prenomTfd.getText());
             db.getPstm().setString(3,loginTfd.getText());
             db.getPstm().setString(4,passwordTfd.getText());
-//            Role selectedRole=profilTfd.getValue();
-//            if(selectedRole!=null){
-//                db.getPstm().setInt(5,selectedRole.getId());
-//            }
             String profil= profilTfd.getSelectionModel().getSelectedItem().toString();
             db.getPstm().setInt(5,profil.equals("ROLE_CANDIDAT") ? 2:3);
             db.executeMaj();
             db.closeConnection();
             loadTable();
-
+            viderChamp();
+            Notification.NotifSuccess("Succes","Utilisateur enregistrer Avec success!");
         }catch (SQLException e){
             throw  new RuntimeException();
+        }
+    }
+
+    @FXML
+    void delete(ActionEvent event) {
+        String sql = "DELETE FROM user WHERE id = ?";
+        try {
+            db.initPrepar(sql);
+            db.getPstm().setInt(1, id);
+            db.executeMaj();
+            db.closeConnection();
+            loadTable();
+            viderChamp();
+            Notification.NotifSuccess("Succes", "Utilisateur Supprimer Avec success!");
+            enregistrerBtn.setDisable(false);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -155,6 +209,12 @@ public class UserController  implements Initializable {
         });
         loginCol.setCellValueFactory(new PropertyValueFactory<Utilisateur,String>("login"));
         activedCol.setCellValueFactory(new PropertyValueFactory<Utilisateur,Integer>("actived"));
+    }
+    public void viderChamp(){
+        nomTfd.setText("");
+        prenomTfd.setText("");
+        loginTfd.setText("");
+        passwordTfd.setText("");
     }
 }
 
