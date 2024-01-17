@@ -1,0 +1,63 @@
+/* style.css */
+
+/* Appliquer un style global à la vue */
+.main-view {
+    -fx-background-color: #f4f4f4;
+}
+
+/* Styles pour les éléments de texte */
+.text-label {
+    -fx-font-size: 14px;
+    -fx-fill: #333333;
+}
+
+.text-field {
+    -fx-font-size: 14px;
+    -fx-pref-width: 245px;
+}
+
+.password-field {
+    -fx-font-size: 14px;
+    -fx-pref-width: 245px;
+}
+
+
+.table-column {
+    -fx-font-size: 14px;
+}
+
+/* Styles pour les boutons */
+.button-bar {
+    -fx-text-fill: white; /* Couleur du texte */
+
+}
+
+/* style.css */
+
+.root {
+    -fx-background-color: #f0f0f0; /* Couleur de fond */
+}
+
+#utilisateursTbl {
+    -fx-background-color: #ffffff; /* Couleur de fond de la table */
+}
+
+/* Styles pour les boutons */
+
+/* Style pour les textes */
+.text {
+    -fx-font-size: 16px; /* Taille de la police */
+    -fx-fill: #333333; /* Couleur du texte */
+}
+
+/* Style pour les textfield et passwordfield */
+.text-field {
+    -fx-background-color: #ffffff; /* Couleur de fond */
+    -fx-font-size: 14px; /* Taille de la police */
+}
+
+/* Style pour la tableview */
+.table-view {
+    -fx-border-color: #e0e0e0; /* Couleur de la bordure */
+    -fx-border-width: 1px; /* Largeur de la bordure */
+}

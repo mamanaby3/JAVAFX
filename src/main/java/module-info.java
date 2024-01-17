@@ -4,7 +4,6 @@ module sen.dev.sponsorshipapp1 {
     requires java.sql;
     requires static lombok;
     requires TrayNotification;
-    //requires static fontawesomefx;
 
     opens sen.dev.sponsorshipapp1 to javafx.fxml;
     exports sen.dev.sponsorshipapp1;
