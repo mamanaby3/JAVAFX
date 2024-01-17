@@ -72,6 +72,10 @@ public class UserController  implements Initializable {
     @FXML
     private TableColumn<Utilisateur, String> loginCol;
 
+
+    @FXML
+    private TableColumn<Utilisateur, Void> actionCol;
+
     @FXML
     private Button enregistrerBtn;
 
@@ -188,11 +192,6 @@ public class UserController  implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         loadTable();
-        setListeProfil();
-
-        ///////////////////////Activer et desactiver
-        TableColumn<Utilisateur, Void> actionCol = new TableColumn<>("Action");
-        actionCol.setPrefWidth(100);
         actionCol.setCellFactory(param -> new TableCell<>() {
             private final Button activerBtn = new Button("Activer");
             private final Button desactiverBtn = new Button("Désactiver");
@@ -231,7 +230,6 @@ public class UserController  implements Initializable {
             }
         });
 
-        utilisateursTbl.getColumns().add(actionCol);
     }
 
     ///La fonction qui permet d'activer un utilisateur
@@ -281,7 +279,7 @@ public class UserController  implements Initializable {
     }
     public ObservableList<Utilisateur> getUtilisateurs() {
         ObservableList<Utilisateur> utilisateurs = FXCollections.observableArrayList();
-        String sql = "SELECT * FROM user ";
+        String sql = "SELECT * FROM user WHERE profil !=1 order by id";
         try {
             db.initPrepar(sql);
             ResultSet rs = db.executeSelect();
